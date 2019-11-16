@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.potatocorp.projectz.repository;
+package com.potatocorp.projectz_web.controller;
 
 /**
  *
  * @author thoma
  */
-public class MYSQLLocationDAO {
+public class LocationController {
     
 }

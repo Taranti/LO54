@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.potatocorp.projectz.controller;
+package com.potatocorp.projectz_web.entity;
 
 /**
  *
  * @author thoma
  */
-public class LocationController {
+public class Location {
     
 }
