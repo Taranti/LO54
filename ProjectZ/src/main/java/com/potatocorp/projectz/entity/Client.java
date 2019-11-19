@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author thoma
  */
 public class Client {
+    
     private int id;
     private String lastName;
     private String firstName;

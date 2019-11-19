@@ -5,7 +5,7 @@
  */
 package com.potatocorp.projectz.repository;
 
-import com.potatocorp.projectz.entity.Location;
+import com.potatocorp.projectz.entity.Course;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,15 +18,15 @@ import java.util.ArrayList;
  *
  * @author thoma
  */
-public class MYSQLLocationDAO {
+public class MYSQLCourseDAO {
     
-    public void saveNewLocation(Location l) {
+    public void saveNewCourse (Course c) {
         Connection con = null;
         try {
             Class.forName("org.hibernate.dialect.MySQLDialect");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
-            PreparedStatement ps = con.prepareStatement("INSERT INTO LOCATION(CITY) VALUES(?)");
-            ps.setString(1, l.getCity());
+            PreparedStatement ps = con.prepareStatement("INSERT INTO COURSE(TITLE) VALUES(?)");
+            ps.setString(1, c.getTitle());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,18 +39,18 @@ public class MYSQLLocationDAO {
         }
     }
     
-    public ArrayList<Location> getLocations(){
-        ArrayList<Location> locations = new ArrayList<Location>();
+    public ArrayList<Course> getCourses(){
+        ArrayList<Course> courses = new ArrayList<Course>();
         Connection con = null;
-        String sql = "SELECT * FROM LOCATION";
+        String sql = "SELECT * FROM COURSE";
         try {
             Class.forName("org.hibernate.dialect.MySQLDialect");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
             while(rs.next()){
-                Location l = new Location(rs.getInt("ID"),rs.getString("CITY"));
-                locations.add(l);
+                Course c = new Course(rs.getString("ID"),rs.getString("TITLE"));
+                courses.add(c);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,6 +62,6 @@ public class MYSQLLocationDAO {
 
             }
         }
-        return locations;   
+        return courses;   
     }
 }

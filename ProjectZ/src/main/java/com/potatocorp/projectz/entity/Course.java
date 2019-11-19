@@ -11,40 +11,40 @@ import java.util.Objects;
  *
  * @author thoma
  */
-public class Location {
+public class Course {
     
-    private int id;
-    private String city;
+    private String code;
+    private String title;
 
-    public Location() {
+    public Course() {
     }
 
-    public Location(int id, String city) {
-        this.id = id;
-        this.city = city;
+    public Course(String code, String title) {
+        this.code = code;
+        this.title = title;
     }
 
-    public int getId() {
-        return id;
+    public String getCode() {
+        return code;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getCity() {
-        return city;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.id;
-        hash = 83 * hash + Objects.hashCode(this.city);
+        hash = 67 * hash + Objects.hashCode(this.code);
+        hash = 67 * hash + Objects.hashCode(this.title);
         return hash;
     }
 
@@ -59,11 +59,11 @@ public class Location {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Location other = (Location) obj;
-        if (this.id != other.id) {
+        final Course other = (Course) obj;
+        if (!Objects.equals(this.code, other.code)) {
             return false;
         }
-        if (!Objects.equals(this.city, other.city)) {
+        if (!Objects.equals(this.title, other.title)) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location{" + "id=" + id + ", city=" + city + '}';
+        return "Course{" + "code=" + code + ", title=" + title + '}';
     }
     
 }
