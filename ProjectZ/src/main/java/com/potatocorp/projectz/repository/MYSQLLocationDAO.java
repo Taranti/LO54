@@ -23,7 +23,8 @@ public class MYSQLLocationDAO {
         Connection con = null;
         try {
             Class.forName("org.hibernate.dialect.MySQLDialect");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
+            //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3308/projectz", "root", "root");
             PreparedStatement ps = con.prepareStatement("INSERT INTO LOCATION(CITY) VALUES(?)");
             ps.setString(1, l.getCity());
             ps.executeUpdate();
@@ -44,7 +45,8 @@ public class MYSQLLocationDAO {
         String sql = "SELECT * FROM CLIENT";
         try {
             Class.forName("org.hibernate.dialect.MySQLDialect");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
+            //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3308/projectz", "root", "root");
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
             while(rs.next()){

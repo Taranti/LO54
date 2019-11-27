@@ -24,7 +24,8 @@ public class MYSQLClientDAO {
         Connection con = null;
         try {
             Class.forName("org.hibernate.dialect.MySQLDialect");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
+            //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3308/projectz", "root", "root");
             PreparedStatement ps = con.prepareStatement("INSERT INTO CLIENT(LAST_NAME,FIRST_NAME,ADDRESS,PHONE,EMAIL) VALUES(?,?,?,?,?)");
             ps.setString(1, c.getLastName());
             ps.setString(2, c.getLastName());
@@ -49,7 +50,8 @@ public class MYSQLClientDAO {
         String sql = "SELECT * FROM CLIENT";
         try {
             Class.forName("org.hibernate.dialect.MySQLDialect");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
+            //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3308/projectz", "root", "root");
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
             while(rs.next()){
