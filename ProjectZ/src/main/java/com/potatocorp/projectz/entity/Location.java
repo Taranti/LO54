@@ -18,10 +18,10 @@ import javax.persistence.*;
 public class Location {
     
     @Id
-    @Column (name = "ID")
+    @Column (name = "ID", unique = true, nullable = false)
     private int id;
     
-    @Column (name = "CITY")
+    @Column (name = "CITY", nullable = false)
     private String city;
 
     public Location() {

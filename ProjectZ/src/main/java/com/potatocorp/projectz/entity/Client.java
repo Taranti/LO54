@@ -18,22 +18,22 @@ import javax.persistence.*;
 public class Client {
     
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true, nullable = false)
     private int id;
     
-    @Column(name = "LAST_NAME")
+    @Column(name = "LAST_NAME", nullable = false, length = 45)
     private String lastName;
     
-    @Column(name = "FIRST_NAME")
+    @Column(name = "FIRST_NAME", nullable = false, length = 45)
     private String firstName;
     
-    @Column(name = "ADDRESS")
+    @Column(name = "ADDRESS", nullable = false, length = 45)
     private String address;
     
-    @Column(name = "PHONE")
+    @Column(name = "PHONE", nullable = false, length = 45)
     private String phone;
     
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", length = 45)
     private String email;
 
     public Client() {
