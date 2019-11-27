@@ -6,17 +6,34 @@
 package com.potatocorp.projectz.entity;
 
 import java.util.Objects;
+import javax.persistence.*;
 
 /**
  *
  * @author thoma
  */
+
+@Entity
+@Table(name = "client")
 public class Client {
+    
+    @Id
+    @Column(name = "ID")
     private int id;
+    
+    @Column(name = "LAST_NAME")
     private String lastName;
+    
+    @Column(name = "FIRST_NAME")
     private String firstName;
+    
+    @Column(name = "ADDRESS")
     private String address;
+    
+    @Column(name = "PHONE")
     private String phone;
+    
+    @Column(name = "EMAIL")
     private String email;
 
     public Client() {

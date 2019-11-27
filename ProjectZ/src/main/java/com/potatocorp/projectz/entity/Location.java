@@ -6,13 +6,22 @@
 package com.potatocorp.projectz.entity;
 
 import java.util.Objects;
+import javax.persistence.*;
 
 /**
  *
  * @author thoma
  */
+
+@Entity
+@Table(name = "location")
 public class Location {
+    
+    @Id
+    @Column (name = "ID")
     private int id;
+    
+    @Column (name = "CITY")
     private String city;
 
     public Location() {
