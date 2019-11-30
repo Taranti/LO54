@@ -37,9 +37,9 @@ public class MYSQLCourseDAO {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction transactobj = session.beginTransaction();
-        List<Course> arc =  session.createQuery("FROM Course").list();
+        List<Course> cs =  session.createQuery("FROM Course").list();
         transactobj.commit();
-        return arc;
+        return cs;
     }
     
     public void updateRecord(Course c){
