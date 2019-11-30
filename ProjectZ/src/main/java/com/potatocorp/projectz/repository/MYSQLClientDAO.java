@@ -53,8 +53,8 @@ public class MYSQLClientDAO {
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(sql);
             while(rs.next()){
-                Client c = new Client(rs.getInt("ID"),rs.getString("LAST_NAME"),rs.getString("FIRST_NAME"),rs.getString("ADDRESS"),rs.getString("PHONE"),rs.getString("EMAIL"));
-                clients.add(c);
+                //Client c = new Client(rs.getInt("ID"),rs.getString("LAST_NAME"),rs.getString("FIRST_NAME"),rs.getString("ADDRESS"),rs.getString("PHONE"),rs.getString("EMAIL"));
+                //clients.add(c);
             }
         } catch (Exception e) {
             e.printStackTrace();

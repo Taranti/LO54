@@ -5,33 +5,55 @@
  */
 package com.potatocorp.projectz.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.*;
 
 /**
  *
  * @author thoma
  */
-public class Client {
+
+@Entity
+@Table(name = "client")
+public class Client implements Serializable {
     
+    @Id
+    @Column(name = "ID", unique = true, nullable = false)
     private int id;
+    
+    @Column(name = "LAST_NAME", nullable = false, length = 45)
     private String lastName;
+    
+    @Column(name = "FIRST_NAME", nullable = false, length = 45)
     private String firstName;
+    
+    @Column(name = "ADDRESS", nullable = false, length = 45)
     private String address;
+    
+    @Column(name = "PHONE", nullable = false, length = 45)
     private String phone;
+    
+    @Column(name = "EMAIL", length = 45)
     private String email;
+    
+    @ManyToOne
+    @Column (name = "COURSE_SESSION", nullable = false, length = 45)
+    private CourseSession session;
 
     public Client() {
     }
-   
-    public Client(int id, String lastName, String firstName, String address, String phone, String email) {
+
+    public Client(int id, String lastName, String firstName, String address, String phone, String email, CourseSession session) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.session = session;
     }
-
+   
     public int getId() {
         return id;
     }
@@ -80,15 +102,24 @@ public class Client {
         this.email = email;
     }
 
+    public CourseSession getSession() {
+        return session;
+    }
+
+    public void setSession(CourseSession session) {
+        this.session = session;
+    }   
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + this.id;
-        hash = 97 * hash + Objects.hashCode(this.lastName);
-        hash = 97 * hash + Objects.hashCode(this.firstName);
-        hash = 97 * hash + Objects.hashCode(this.address);
-        hash = 97 * hash + Objects.hashCode(this.phone);
-        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + Objects.hashCode(this.lastName);
+        hash = 17 * hash + Objects.hashCode(this.firstName);
+        hash = 17 * hash + Objects.hashCode(this.address);
+        hash = 17 * hash + Objects.hashCode(this.phone);
+        hash = 17 * hash + Objects.hashCode(this.email);
+        hash = 17 * hash + Objects.hashCode(this.session);
         return hash;
     }
 
@@ -122,12 +153,15 @@ public class Client {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
+        if (!Objects.equals(this.session, other.session)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Client{" + "id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", address=" + address + ", phone=" + phone + ", email=" + email + '}';
+        return "Client{" + "id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", address=" + address + ", phone=" + phone + ", email=" + email + ", session=" + session + '}';
     }
     
     

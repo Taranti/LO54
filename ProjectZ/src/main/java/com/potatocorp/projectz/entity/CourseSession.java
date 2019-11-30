@@ -5,32 +5,54 @@
  */
 package com.potatocorp.projectz.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author thoma
  */
-public class CourseSession {
+@Entity
+@Table(name = "course_session")
+public class CourseSession implements Serializable {
     
+    @Id
+    @Column (name = "ID", unique = true, nullable = false)
     private int id;
+    
+    @Column (name = "START_DATE", nullable = false)
     private Date startDate;
+    
+    @Column (name = "END_DATE", nullable = false)
     private Date endDate;
+    
+    @Column (name = "MAX", nullable = false)
     private int max;
-    private String courseCode;
-    private int locationId;
+    
+    @ManyToOne
+    @Column (name = "COURSE_CODE", nullable = false)
+    private Course course;
+    
+    @ManyToOne
+    @Column (name = "LOCATION_ID", nullable = false)
+    private Location location;
 
     public CourseSession() {
     }
 
-    public CourseSession(int id, Date startDate, Date endDate, int max, String courseCode, int locationId) {
+    public CourseSession(int id, Date startDate, Date endDate, int max, Course course, Location location) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.max = max;
-        this.courseCode = courseCode;
-        this.locationId = locationId;
+        this.course = course;
+        this.location = location;
     }
 
     public int getId() {
@@ -65,31 +87,31 @@ public class CourseSession {
         this.max = max;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + this.id;
-        hash = 47 * hash + Objects.hashCode(this.startDate);
-        hash = 47 * hash + Objects.hashCode(this.endDate);
-        hash = 47 * hash + this.max;
-        hash = 47 * hash + Objects.hashCode(this.courseCode);
-        hash = 47 * hash + this.locationId;
+        int hash = 5;
+        hash = 97 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.startDate);
+        hash = 97 * hash + Objects.hashCode(this.endDate);
+        hash = 97 * hash + this.max;
+        hash = 97 * hash + Objects.hashCode(this.course);
+        hash = 97 * hash + Objects.hashCode(this.location);
         return hash;
     }
 
@@ -111,16 +133,16 @@ public class CourseSession {
         if (this.max != other.max) {
             return false;
         }
-        if (this.locationId != other.locationId) {
-            return false;
-        }
-        if (!Objects.equals(this.courseCode, other.courseCode)) {
-            return false;
-        }
         if (!Objects.equals(this.startDate, other.startDate)) {
             return false;
         }
         if (!Objects.equals(this.endDate, other.endDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.course, other.course)) {
+            return false;
+        }
+        if (!Objects.equals(this.location, other.location)) {
             return false;
         }
         return true;
@@ -128,7 +150,7 @@ public class CourseSession {
 
     @Override
     public String toString() {
-        return "CourseSession{" + "id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", max=" + max + ", courseCode=" + courseCode + ", locationId=" + locationId + '}';
+        return "CourseSession{" + "id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", max=" + max + ", course=" + course + ", location=" + location + '}';
     }
     
 }

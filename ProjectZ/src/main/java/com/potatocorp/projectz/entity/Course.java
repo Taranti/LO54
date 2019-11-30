@@ -5,15 +5,26 @@
  */
 package com.potatocorp.projectz.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author thoma
  */
-public class Course {
+@Entity
+@Table(name = "course")
+public class Course implements Serializable {
     
+    @Id
+    @Column (name = "CODE", unique = true, nullable = false)
     private String code;
+    
+    @Column (name = "TITLE", nullable = false)
     private String title;
 
     public Course() {
