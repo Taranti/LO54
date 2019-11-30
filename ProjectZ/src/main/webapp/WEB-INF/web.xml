@@ -20,6 +20,12 @@
         <url-pattern>/createUser/*</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>servletCoursesSelection</servlet-name>
+        <url-pattern>/courses/*</url-pattern>
+    </servlet-mapping>
+    
+    
     <session-config>
         <session-timeout>
             30
