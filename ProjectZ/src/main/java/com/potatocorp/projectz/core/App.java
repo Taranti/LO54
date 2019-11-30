@@ -7,6 +7,7 @@ package com.potatocorp.projectz.core;
 
 import com.potatocorp.projectz.entity.Course;
 import com.potatocorp.projectz.repository.MYSQLCourseDAO;
+import java.util.List;
 
 /**
  *
@@ -16,7 +17,16 @@ public class App {
     
     public static void main(String[] args){
         MYSQLCourseDAO m = new MYSQLCourseDAO();
-        m.saveNewCourse(new Course("CODE1","TITRE"));
+        String n = m.saveRecord(new Course("CODE7","TITRE"));
+        List<Course> crss = m.getRecords();
+        Course c = new Course("CODE7", "TITRE2");
+        m.updateRecord(c);
+        try {
+            Thread.sleep(3000);
+        }  catch (InterruptedException e) {
+            System.out.println(e);
+        }
+        m.deleteRecord(c);
     }
     
 }

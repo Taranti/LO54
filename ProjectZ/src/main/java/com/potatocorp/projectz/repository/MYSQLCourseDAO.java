@@ -7,13 +7,7 @@ package com.potatocorp.projectz.repository;
 
 import com.potatocorp.projectz.entity.Course;
 import com.potatocorp.projectz.tools.HibernateUtil;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -24,43 +18,54 @@ import org.hibernate.Transaction;
  */
 public class MYSQLCourseDAO {
     
-    public void saveNewCourse (Course c) {
+    public String saveRecord (Course c) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         System.out.println("Session created");
 
-        Transaction tx = session.beginTransaction();
+        Transaction transactobj = session.beginTransaction();
 
         session.save(c);
 
-        tx.commit();
+        transactobj.commit();
         
-        System.out.println(c.getCode());
+        System.out.println("Succesfully Created " + c.toString());
+        return c.getCode();
     }
     
-    public ArrayList<Course> getCourses(){
-        ArrayList<Course> courses = new ArrayList<Course>();
-        Connection con = null;
-        String sql = "SELECT * FROM COURSE";
-        try {
-            Class.forName("org.hibernate.dialect.MySQLDialect");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
-            Statement s = con.createStatement();
-            ResultSet rs = s.executeQuery(sql);
-            while(rs.next()){
-                Course c = new Course(rs.getString("ID"),rs.getString("TITLE"));
-                courses.add(c);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-
-            }
-        }
-        return courses;   
+    public List<Course> getRecords(){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transactobj = session.beginTransaction();
+        List<Course> arc =  session.createQuery("FROM Course").list();
+        transactobj.commit();
+        return arc;
+    }
+    
+    public void updateRecord(Course c){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        Course cobj = (Course) session.load(Course.class, c.getCode());
+        cobj.setTitle(c.getTitle());
+        
+        transactobj.commit();
+        
+        System.out.println("Succesfully Updated " + c.toString());
+    }
+    
+    public void deleteRecord(Course c){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        Course cobj = (Course) session.load(Course.class, c.getCode());
+        session.delete(cobj);
+        
+        transactobj.commit();
+        System.out.println("Succesfully Deleted " + c.toString());
     }
 }
