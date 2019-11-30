@@ -5,6 +5,7 @@
  */
 package com.potatocorp.projectz.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -15,7 +16,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "location")
-public class Location {
+public class Location implements Serializable {
     
     @Id
     @Column (name = "ID", unique = true, nullable = false)
