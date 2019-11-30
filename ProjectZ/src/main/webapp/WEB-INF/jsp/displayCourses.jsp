@@ -12,6 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <h1>Liste des formations</h1>
+        <ul>
+            <c:forEach var="session" items="${sessions}">
+                    <li>${session.toString()} </li>
+            </c:forEach>
+        </ul>
     </body>
 </html>

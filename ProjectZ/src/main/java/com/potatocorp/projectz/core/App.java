@@ -25,7 +25,7 @@ public class App {
     public static void main(String[] args){
         
         // COURSE CLASSE DAO TEST
-        MYSQLCourseDAO mc = new MYSQLCourseDAO();
+        /*MYSQLCourseDAO mc = new MYSQLCourseDAO();
         
         String n = mc.saveRecord(new Course("CODE7","TITRE"));
         
@@ -81,7 +81,7 @@ public class App {
         
         waitT();
         
-        mct.deleteRecord(ct);
+        mct.deleteRecord(ct);*/
     }
     
     public static void waitT(){
