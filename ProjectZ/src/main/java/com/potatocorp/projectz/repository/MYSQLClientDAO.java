@@ -6,7 +6,6 @@
 package com.potatocorp.projectz.repository;
 
 import com.potatocorp.projectz.entity.Client;
-import com.potatocorp.projectz.entity.CourseSession;
 import com.potatocorp.projectz.tools.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
