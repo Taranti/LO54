@@ -16,7 +16,7 @@
         <h1>Filtrer les formations</h1>
         <form action="/courses" method="post">
             <input type="text" name="keyword">
-            <input type="date" name="date">
+            <input type="date" name="date" min=${today}>
             <select name="location">
                 <option value=""> -- PLease choose a location</option>
                 <c:forEach var="location" items="${locationList}">
