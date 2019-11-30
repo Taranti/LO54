@@ -6,6 +6,7 @@
 package com.potatocorp.projectz.repository;
 
 import com.potatocorp.projectz.entity.Course;
+import com.potatocorp.projectz.tools.HibernateUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -21,22 +25,17 @@ import java.util.ArrayList;
 public class MYSQLCourseDAO {
     
     public void saveNewCourse (Course c) {
-        Connection con = null;
-        try {
-            Class.forName("org.hibernate.dialect.MySQLDialect");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectz", "root", "root");
-            PreparedStatement ps = con.prepareStatement("INSERT INTO COURSE(TITLE) VALUES(?)");
-            ps.setString(1, c.getTitle());
-            ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        System.out.println("Session created");
+
+        Transaction tx = session.beginTransaction();
+
+        session.save(c);
+
+        tx.commit();
+        
+        System.out.println(c.getCode());
     }
     
     public ArrayList<Course> getCourses(){

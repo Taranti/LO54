@@ -38,7 +38,7 @@ public class Client implements Serializable {
     private String email;
     
     @ManyToOne
-    @Column (name = "COURSE_SESSION", nullable = false, length = 45)
+    @JoinColumn (name = "COURSE_SESSION_ID", nullable = false)
     private CourseSession session;
 
     public Client() {

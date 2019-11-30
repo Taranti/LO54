@@ -8,11 +8,7 @@ package com.potatocorp.projectz.entity;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -36,11 +32,11 @@ public class CourseSession implements Serializable {
     private int max;
     
     @ManyToOne
-    @Column (name = "COURSE_CODE", nullable = false)
+    @JoinColumn (name = "COURSE_CODE", nullable = false)
     private Course course;
     
     @ManyToOne
-    @Column (name = "LOCATION_ID", nullable = false)
+    @JoinColumn (name = "LOCATION_ID", nullable = false)
     private Location location;
 
     public CourseSession() {
