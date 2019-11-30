@@ -43,8 +43,8 @@ Contributor(s):
   <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 	<property name="connection.url">jdbc:mysql://mysql-taranti.alwaysdata.net:3306/taranti_lo54</property>
-	<property name="connection.username">taranti</property>
-	<property name="connection.password">P06101998@n</property>
+	<property name="connection.username">taranti_lo54</property>
+	<property name="connection.password">lo54mysql</property>
 	<property name="connection.pool_size">1</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="current_session_context_class">thread</property>
