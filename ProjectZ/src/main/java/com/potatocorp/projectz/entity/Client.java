@@ -5,6 +5,10 @@
  */
 package com.potatocorp.projectz.entity;
 
+<<<<<<< HEAD
+=======
+import java.io.Serializable;
+>>>>>>> pierre
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -15,7 +19,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "client")
+<<<<<<< HEAD
 public class Client {
+=======
+public class Client implements Serializable {
+>>>>>>> pierre
     
     @Id
     @Column(name = "ID", unique = true, nullable = false)
@@ -35,19 +43,37 @@ public class Client {
     
     @Column(name = "EMAIL", length = 45)
     private String email;
+<<<<<<< HEAD
 
     public Client() {
     }
    
     public Client(int id, String lastName, String firstName, String address, String phone, String email) {
+=======
+    
+    @ManyToOne
+    @JoinColumn (name = "COURSE_SESSION_ID", nullable = false)
+    private CourseSession session;
+
+    public Client() {
+    }
+
+    public Client(int id, String lastName, String firstName, String address, String phone, String email, CourseSession session) {
+>>>>>>> pierre
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
         this.phone = phone;
         this.email = email;
+<<<<<<< HEAD
     }
 
+=======
+        this.session = session;
+    }
+   
+>>>>>>> pierre
     public int getId() {
         return id;
     }
@@ -96,6 +122,7 @@ public class Client {
         this.email = email;
     }
 
+<<<<<<< HEAD
     @Override
     public int hashCode() {
         int hash = 3;
@@ -105,6 +132,26 @@ public class Client {
         hash = 97 * hash + Objects.hashCode(this.address);
         hash = 97 * hash + Objects.hashCode(this.phone);
         hash = 97 * hash + Objects.hashCode(this.email);
+=======
+    public CourseSession getSession() {
+        return session;
+    }
+
+    public void setSession(CourseSession session) {
+        this.session = session;
+    }   
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + Objects.hashCode(this.lastName);
+        hash = 17 * hash + Objects.hashCode(this.firstName);
+        hash = 17 * hash + Objects.hashCode(this.address);
+        hash = 17 * hash + Objects.hashCode(this.phone);
+        hash = 17 * hash + Objects.hashCode(this.email);
+        hash = 17 * hash + Objects.hashCode(this.session);
+>>>>>>> pierre
         return hash;
     }
 
@@ -138,12 +185,22 @@ public class Client {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
+<<<<<<< HEAD
+=======
+        if (!Objects.equals(this.session, other.session)) {
+            return false;
+        }
+>>>>>>> pierre
         return true;
     }
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "Client{" + "id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", address=" + address + ", phone=" + phone + ", email=" + email + '}';
+=======
+        return "Client{" + "id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", address=" + address + ", phone=" + phone + ", email=" + email + ", session=" + session + '}';
+>>>>>>> pierre
     }
     
     

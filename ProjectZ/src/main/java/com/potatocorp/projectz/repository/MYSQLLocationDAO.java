@@ -6,6 +6,7 @@
 package com.potatocorp.projectz.repository;
 
 import com.potatocorp.projectz.entity.Location;
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +14,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+=======
+import com.potatocorp.projectz.tools.HibernateUtil;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+>>>>>>> pierre
 
 /**
  *
@@ -39,6 +47,7 @@ public class MYSQLLocationDAO {
         }
     }
     
+<<<<<<< HEAD
     public ArrayList<Location> getLocations(){
         ArrayList<Location> locations = new ArrayList<Location>();
         Connection con = null;
@@ -64,5 +73,60 @@ public class MYSQLLocationDAO {
             }
         }
         return locations;   
+=======
+    public Integer saveRecord (Location l) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        System.out.println("Session created");
+
+        Transaction transactobj = session.beginTransaction();
+
+        session.save(l);
+
+        transactobj.commit();
+        
+        System.out.println("Succesfully Created " + l.toString());
+        return l.getId();
+    }
+    
+    public List<Location> getRecords(){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        List<Location> recordobj =  session.createQuery("FROM Location").list();
+        
+        transactobj.commit();
+        
+        return recordobj;
+    }
+    
+    public void updateRecord(Location l){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        Location recordobj = (Location) session.load(Location.class, l.getId());
+        recordobj.setCity(l.getCity());
+        
+        transactobj.commit();
+        
+        System.out.println("Succesfully Updated " + l.toString());
+    }
+    
+    public void deleteRecord(Location l){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        Location recordobj = (Location) session.load(Location.class, l.getId());
+        session.delete(recordobj);
+        
+        transactobj.commit();
+        System.out.println("Succesfully Deleted " + l.toString());
+>>>>>>> pierre
     }
 }
