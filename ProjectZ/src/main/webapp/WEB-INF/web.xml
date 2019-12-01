@@ -22,7 +22,7 @@
     
     <servlet-mapping>
         <servlet-name>servletCoursesSelection</servlet-name>
-        <url-pattern>/courses/*</url-pattern>
+        <url-pattern>/filter/*</url-pattern>
     </servlet-mapping>
     
     

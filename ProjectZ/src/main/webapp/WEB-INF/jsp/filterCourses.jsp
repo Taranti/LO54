@@ -14,7 +14,7 @@
     <body>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <h1>Filtrer les formations</h1>
-        <form action="/courses" method="post">
+        <form action="/filter" method="post">
             <input type="text" name="keyword">
             <input type="date" name="date" min=${today}>
             <select name="location">

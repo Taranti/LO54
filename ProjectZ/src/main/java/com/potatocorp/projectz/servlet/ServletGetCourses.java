@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author pneau
  */
- @WebServlet(name = "servletCoursesSelection", urlPatterns = {"/courses"})
+ @WebServlet(name = "servletCoursesSelection", urlPatterns = {"/filter"})
 public class ServletGetCourses extends HttpServlet{
    
 
@@ -62,7 +62,7 @@ public class ServletGetCourses extends HttpServlet{
         session.setAttribute("keyword", keyword);
         session.setAttribute("date", date);
         session.setAttribute("location", locationID);
-        response.sendRedirect("/content/test.jsp");
+        response.sendRedirect("filteredCourses");
         try (PrintWriter out = response.getWriter()) {
             if(keyword!=""){
                 out.println("Keyword : "+keyword);
