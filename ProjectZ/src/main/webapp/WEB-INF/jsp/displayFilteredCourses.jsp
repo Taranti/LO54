@@ -12,8 +12,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p>Date : ${date}</p>
-        <p>Location : ${location}</p>
-        <p>Keyword : ${keyword}</p>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <h1>Filtered Sessions</h1>
+         <ul>
+            <c:forEach var="session" items="${filteredSessions}">
+                    <li>
+                        ${session.toString()}
+                        <a href="/register?session=${session.getId()}"> Register</a>
+                    </li>
+            </c:forEach>
+        </ul>
     </body>
 </html>

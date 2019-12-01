@@ -16,7 +16,10 @@
         <h1>Liste des formations</h1>
         <ul>
             <c:forEach var="session" items="${sessions}">
-                    <li>${session.toString()} </li>
+                    <li>
+                        ${session.toString()}
+                        <a href="/register?session=${session.getId()}"> Register</a>
+                    </li>
             </c:forEach>
         </ul>
     </body>
