@@ -5,12 +5,16 @@
  */
 package com.potatocorp.projectz.repository;
 
+import com.potatocorp.projectz.entity.Course;
 import com.potatocorp.projectz.entity.CourseSession;
+import com.potatocorp.projectz.entity.Location;
 import com.potatocorp.projectz.tools.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import javax.persistence.*;
 
 /**
  *
@@ -75,5 +79,30 @@ public class MYSQLCourseSessionDAO {
         
         transactobj.commit();
         System.out.println("Succesfully Deleted " + cs.toString());
+    }
+    
+    public List<CourseSession> getRecordsByLocation(Location l){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        List<CourseSession> coursesSessions = session.getNamedQuery("CourseSessionFindByLocation").setParameter("locationId", l.getId()).list();
+        
+        transactobj.commit();
+        
+        return coursesSessions;
+    }   
+    public List<Course> getRecordsByCourse(Course c){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        List<Course> courses = session.getNamedQuery("CourseSessionFindByCourse").setParameter("courseCode", c.getCode()).list();
+        
+        transactobj.commit();
+        
+        return courses;
     }
 }

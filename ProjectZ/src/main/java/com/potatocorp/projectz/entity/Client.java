@@ -19,8 +19,9 @@ import javax.persistence.*;
 public class Client implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
-    private int id;
+    private Integer id;
     
     @Column(name = "LAST_NAME", nullable = false, length = 45)
     private String lastName;
@@ -44,7 +45,7 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(int id, String lastName, String firstName, String address, String phone, String email, CourseSession session) {
+    public Client(Integer id, String lastName, String firstName, String address, String phone, String email, CourseSession session) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -54,11 +55,11 @@ public class Client implements Serializable {
         this.session = session;
     }
    
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
