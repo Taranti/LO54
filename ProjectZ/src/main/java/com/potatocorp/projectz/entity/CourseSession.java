@@ -21,7 +21,9 @@ import javax.persistence.*;
     @org.hibernate.annotations.NamedQuery(name = "CourseSessionFindByLocation", 
         query = "from CourseSession where LOCATION_ID = :locationId"),
     @org.hibernate.annotations.NamedQuery(name = "CourseSessionFindByCourse", 
-        query = "from CourseSession where COURSE_CODE = :courseCode")
+        query = "from CourseSession where COURSE_CODE = :courseCode"),
+    @org.hibernate.annotations.NamedQuery(name = "CourseSessionFindByID", 
+        query = "from CourseSession where ID = :sessionID")
 })
 
 public class CourseSession implements Serializable {

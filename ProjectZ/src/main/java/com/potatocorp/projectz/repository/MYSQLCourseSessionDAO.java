@@ -105,4 +105,17 @@ public class MYSQLCourseSessionDAO {
         
         return courses;
     }
+    
+    public CourseSession getRecordsByID(Integer id){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        CourseSession courseSession = (CourseSession) session.getNamedQuery("CourseSessionFindByID").setParameter("sessionID", id).list().get(0);
+        
+        transactobj.commit();
+        
+        return courseSession;
+    }
 }

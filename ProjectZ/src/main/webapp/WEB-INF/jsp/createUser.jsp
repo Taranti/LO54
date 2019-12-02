@@ -1,9 +1,12 @@
+<%-- 
+    Document   : createUser
+    Created on : 2 déc. 2019, 19:39:36
+    Author     : Pierre
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>User registration</title>
@@ -12,7 +15,7 @@ and open the template in the editor.
     </head>
     <body>
         <div>Sign Up</div>
-        <form action="/register" method="post">
+        <form action="/register?session=${session}" method="post">
             First Name:<br>
             <input type="text" name="firstname" >
             <br>
@@ -28,6 +31,7 @@ and open the template in the editor.
             Email:<br>
             <input type="email" name="mail">
             <br><br>
+            <input type="hidden" name="session" value=${session}>
             <input type="submit" value="Submit">
         </form>
     </body>
