@@ -23,7 +23,28 @@ import java.util.List;
 public class App {
     
     public static void main(String[] args){
+        //tests();
+        MYSQLCourseSessionDAO mcl = new MYSQLCourseSessionDAO();
+        MYSQLLocationDAO ml = new MYSQLLocationDAO();
         
+        List<Location> ls = ml.getRecords();
+        
+        List<CourseSession> cs = mcl.getRecordsByLocation(ls.get(0));
+        for(CourseSession c : cs){
+            System.out.println("Succesfully Deleted " + c.toString());
+        }
+    }
+    
+    public static void waitT(){
+        try {
+            Thread.sleep(3000);
+        }  catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+    
+    
+    public static void tests(){
         // COURSE CLASSE DAO TEST
         MYSQLCourseDAO mc = new MYSQLCourseDAO();
         
@@ -42,11 +63,11 @@ public class App {
         // LOCATION CLASSE DAO TEST
         MYSQLLocationDAO ml = new MYSQLLocationDAO();
         
-        int n2 = ml.saveRecord(new Location(2,"CITY"));
+        int n2 = ml.saveRecord(new Location(null,"CITY2"));
         
         List<Location> ls = ml.getRecords();
         
-        Location l = new Location(2, "CITY2");
+        Location l = new Location(ls.get(ls.size()-1).getId(), "CITY4");
         
         ml.updateRecord(l);
         
@@ -56,11 +77,11 @@ public class App {
         
         // COURSE_SESSION CLASSE DAO TEST
         MYSQLCourseSessionDAO mcl = new MYSQLCourseSessionDAO();
-        int n3 = mcl.saveRecord(new CourseSession(2,  new Date(2020,12,1), new Date(2020,12,4), 20, cs.get(0), ls.get(0)));
+        int n3 = mcl.saveRecord(new CourseSession(null,  new Date(2020,12,1), new Date(2020,12,4), 20, cs.get(0), ls.get(0)));
         
         List<CourseSession> css = mcl.getRecords();
         
-        CourseSession crs = new CourseSession(2, new Date(2020,12,1), new Date(2020,12,4), 20, cs.get(1), ls.get(0));
+        CourseSession crs = new CourseSession(css.get(css.size()-1).getId(), new Date(2020,12,1), new Date(2020,12,4), 20, cs.get(1), ls.get(0));
         
         mcl.updateRecord(crs);
         
@@ -71,11 +92,11 @@ public class App {
         
         // CLIENT CLASSE DAO TEST
         MYSQLClientDAO mct = new MYSQLClientDAO();
-        int n4 = mct.saveRecord(new Client(2, "lastName", "firstName", "address", "phone", "email", css.get(0)));
+        int n4 = mct.saveRecord(new Client(null, "lastName", "firstName", "address", "phone", "email", css.get(0)));
         
         List<Client> cts = mct.getRecords();
         
-        Client ct = new Client(2, "lastName", "firstName2", "address", "phone", "email", css.get(0));
+        Client ct = new Client(cts.get(cts.size()-1).getId(), "lastName", "firstName2", "address", "phone", "email", css.get(0));
         
         mct.updateRecord(ct);
         
@@ -83,13 +104,4 @@ public class App {
         
         mct.deleteRecord(ct);
     }
-    
-    public static void waitT(){
-        try {
-            Thread.sleep(3000);
-        }  catch (InterruptedException e) {
-            System.out.println(e);
-        }
-    }
-    
 }
