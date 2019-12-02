@@ -20,7 +20,7 @@
             <select name="location">
                 <option value=""> -- PLease choose a location</option>
                 <c:forEach var="location" items="${locationList}">
-                    <option value=${location['id']} >${location['name']} </option>
+                    <option value=${location.getId()} >${location.getCity()} </option>
                     
                 </c:forEach>
             </select>

@@ -5,6 +5,8 @@
  */
 package com.potatocorp.projectz.servlet;
 
+import com.potatocorp.projectz.entity.Location;
+import com.potatocorp.projectz.repository.MYSQLLocationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,15 +34,8 @@ public class ServletGetCourses extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         SimpleDateFormat formater=new SimpleDateFormat("yyyy-MM-dd");
-        ArrayList<Map> locationList= new ArrayList<Map>();
-        Map<String, String> city1 = new HashMap<String, String>();
-        city1.put("id","1");
-        city1.put("name","Belfort");
-        locationList.add(city1);
-        Map<String, String> city2 = new HashMap<String, String>();
-        city2.put("id","2");
-        city2.put("name","Montbéliard");
-        locationList.add(city2);
+        MYSQLLocationDAO locationDAO=new MYSQLLocationDAO();
+        List<Location> locationList= locationDAO.getRecords();
         Date todayDate = Calendar.getInstance().getTime();
         String today = formater.format(todayDate);
         request.setAttribute("today",today);
@@ -63,18 +59,7 @@ public class ServletGetCourses extends HttpServlet{
         session.setAttribute("date", date);
         session.setAttribute("location", locationID);
         response.sendRedirect("filteredCourses");
-        try (PrintWriter out = response.getWriter()) {
-            if(keyword!=""){
-                out.println("Keyword : "+keyword);
-            }
-            if(date!=""){
-                out.println("Date : "+date);
-            }
-            if(locationID!=""){
-                out.println("locationID : "+locationID);
-            }
-            
-        }
+        
     }
 
     public String getServletInfo() {
