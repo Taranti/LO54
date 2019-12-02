@@ -14,13 +14,55 @@
     <body>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <h1>Liste des formations</h1>
-        <ul>
-            <c:forEach var="session" items="${sessions}">
-                    <li>
-                        ${session.toString()}
-                        <a href="/register?session=${session.getId()}"> Register</a>
-                    </li>
+        
+        <table>
+            <thead>
+                <td>
+                    Title
+                </td>
+                <td>
+                    Location
+                </td>
+                <td>
+                    Start Date
+                </td>
+                <td>
+                    End Date
+                </td>
+                <td>
+                    Participants 
+                </td>
+                <td>
+                    Register 
+                </td>
+            </thead>
+            <tbody>
+                <c:forEach var="session" items="${sessions}">
+                    <tr>
+                        <td>
+                            ${session.getCourse().getTitle()}
+                        </td>
+                        <td>
+                            ${session.getLocation().getCity()}
+                        </td>
+                        <td>
+                            ${session.getStartDate()}
+                        </td>
+                        <td>
+                            ${session.getEndDate()}
+                        </td>
+                        <td>
+                            ${session.getNbParticipants()}/${session.getMax()}
+                        </td>
+                        <td>
+                            <c:if test="${session.getNbParticipants()<session.getMax()}">
+                                <a href="/register?session=${session.getId()}"> Register</a>
+                            </c:if>
+                        </td>
+                    </tr>
             </c:forEach>
-        </ul>
+            </tbody>
+            
+        </table>
     </body>
 </html>

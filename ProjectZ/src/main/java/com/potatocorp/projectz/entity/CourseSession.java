@@ -5,6 +5,7 @@
  */
 package com.potatocorp.projectz.entity;
 
+import com.potatocorp.projectz.repository.MYSQLClientDAO;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
@@ -108,6 +109,12 @@ public class CourseSession implements Serializable {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+    
+    public int getNbParticipants(){
+        MYSQLClientDAO clDAO=new MYSQLClientDAO();
+        int nbPart = clDAO.getCountByID(id);
+        return nbPart;
     }
 
     @Override

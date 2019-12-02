@@ -16,6 +16,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "client")
+
+@org.hibernate.annotations.NamedQueries({
+    @org.hibernate.annotations.NamedQuery(name = "CountClientBySession", 
+        query = "select count(*) from Client where COURSE_SESSION_ID = :sessionID")
+})
+
 public class Client implements Serializable {
     
     @Id

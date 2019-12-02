@@ -53,8 +53,8 @@ public class ServletDisplayFilteredCourses extends HttpServlet {
         if(!location.equals(""))formattedLocation=Integer.parseInt(location);
         
         List<CourseSession> filteredSessions = filterSessions(formattedDate,keyword,formattedLocation);
-        request.setAttribute("filteredSessions",filteredSessions);
-        this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/displayFilteredCourses.jsp" ).forward( request, response );
+        request.setAttribute("sessions",filteredSessions);
+        this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/displayCourses.jsp" ).forward( request, response );
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
