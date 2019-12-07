@@ -7,16 +7,12 @@ package com.potatocorp.projectz.servlet;
 
 import com.potatocorp.projectz.entity.CourseSession;
 import com.potatocorp.projectz.repository.MYSQLCourseSessionDAO;
-import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;

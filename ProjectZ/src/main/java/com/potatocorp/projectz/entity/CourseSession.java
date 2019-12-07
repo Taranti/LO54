@@ -5,7 +5,6 @@
  */
 package com.potatocorp.projectz.entity;
 
-import com.potatocorp.projectz.repository.MYSQLClientDAO;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
