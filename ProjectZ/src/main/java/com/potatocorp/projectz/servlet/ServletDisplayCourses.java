@@ -5,19 +5,11 @@
  */
 package com.potatocorp.projectz.servlet;
 
-import com.potatocorp.projectz.controller.CourseSessionController;
 import com.potatocorp.projectz.entity.CourseSession;
 import com.potatocorp.projectz.repository.MYSQLCourseSessionDAO;
-import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

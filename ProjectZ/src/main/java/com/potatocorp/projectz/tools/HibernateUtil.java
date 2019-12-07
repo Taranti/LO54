@@ -6,7 +6,6 @@ import com.potatocorp.projectz.entity.CourseSession;
 import com.potatocorp.projectz.entity.Location;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 

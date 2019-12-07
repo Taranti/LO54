@@ -7,11 +7,6 @@ package com.potatocorp.projectz.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
