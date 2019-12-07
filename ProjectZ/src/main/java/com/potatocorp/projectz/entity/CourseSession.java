@@ -110,12 +110,6 @@ public class CourseSession implements Serializable {
     public void setLocation(Location location) {
         this.location = location;
     }
-    
-    public int getNbParticipants(){
-        MYSQLClientDAO clDAO=new MYSQLClientDAO();
-        int nbPart = clDAO.getCountByID(id);
-        return nbPart;
-    }
 
     @Override
     public int hashCode() {

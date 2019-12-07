@@ -13,6 +13,7 @@
     </head>
     <body>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ page import="com.potatocorp.projectz.controller.CourseSessionController" %>
         <h1>Liste des formations</h1>
         
         <table>
@@ -52,10 +53,10 @@
                             ${session.getEndDate()}
                         </td>
                         <td>
-                            ${session.getNbParticipants()}/${session.getMax()}
+                            ${CourseSessionController.getNbParticipants(session)}/${session.getMax()}
                         </td>
                         <td>
-                            <c:if test="${session.getNbParticipants()<session.getMax()}">
+                            <c:if test="${CourseSessionController.getNbParticipants(session)<session.getMax()}">
                                 <a href="/register?session=${session.getId()}"> Register</a>
                             </c:if>
                         </td>

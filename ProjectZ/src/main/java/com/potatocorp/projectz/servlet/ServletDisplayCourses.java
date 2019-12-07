@@ -5,6 +5,7 @@
  */
 package com.potatocorp.projectz.servlet;
 
+import com.potatocorp.projectz.controller.CourseSessionController;
 import com.potatocorp.projectz.entity.CourseSession;
 import com.potatocorp.projectz.repository.MYSQLCourseSessionDAO;
 import javax.servlet.annotation.WebServlet;
