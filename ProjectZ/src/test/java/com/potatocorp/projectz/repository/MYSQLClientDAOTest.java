@@ -6,26 +6,14 @@
 package com.potatocorp.projectz.repository;
 
 import com.potatocorp.projectz.entity.Client;
-import com.potatocorp.projectz.tools.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
-import org.hibernate.engine.SessionFactoryImplementor;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  *
@@ -44,6 +32,7 @@ public class MYSQLClientDAOTest {
         MockitoAnnotations.initMocks(this);
         when(mysqlClientDAOMocked.saveRecord(c)).thenReturn(1);
         when(mysqlClientDAOMocked.getRecords()).thenReturn(list);
+        when(mysqlClientDAOMocked.getCountByID(c.getId())).thenReturn(1);
     }
     /**
      * Test of saveRecord method, of class MYSQLClientDAO.
@@ -110,6 +99,20 @@ public class MYSQLClientDAOTest {
 
         mysqlClientDAOMocked.deleteRecord(c);
         verify(mysqlClientDAOMocked).deleteRecord(c);
+        
+    }
+    
+    /**
+     * Test of getCountByID method, of class MYSQLClientDAO.
+     */
+    @Test
+    public void testGetCountByID() {
+        System.out.println("getCountByID");
+
+        int i = mysqlClientDAOMocked.getCountByID(c.getId());
+        verify(mysqlClientDAOMocked).getCountByID(c.getId());
+        
+        assertTrue(i > 0);
         
     }
     

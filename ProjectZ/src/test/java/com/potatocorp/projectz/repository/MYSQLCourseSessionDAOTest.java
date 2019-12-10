@@ -11,10 +11,7 @@ import com.potatocorp.projectz.entity.Location;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.mockito.Mock;
@@ -38,9 +35,13 @@ public class MYSQLCourseSessionDAOTest {
     @Before
     public void init() {
         List<CourseSession> list = new ArrayList<CourseSession>();
+        List<Course> listC = new ArrayList<Course>();
         MockitoAnnotations.initMocks(this);
         when(mysqlCourseSessionDAOMocked.saveRecord(c)).thenReturn(1);
         when(mysqlCourseSessionDAOMocked.getRecords()).thenReturn(list);
+        when(mysqlCourseSessionDAOMocked.getRecordsByLocation(l)).thenReturn(list);
+        when(mysqlCourseSessionDAOMocked.getRecordsByCourse(co)).thenReturn(listC);
+        when(mysqlCourseSessionDAOMocked.getRecordsByID(c.getId())).thenReturn(c);
     }
     
     
@@ -97,6 +98,45 @@ public class MYSQLCourseSessionDAOTest {
 
         mysqlCourseSessionDAOMocked.deleteRecord(c);
         verify(mysqlCourseSessionDAOMocked).deleteRecord(c);
+    }
+    
+    /**
+     * Test of getRecordsByLocation method, of class MYSQLCourseSessionDAO.
+     */
+    @Test
+    public void testGetRecordsByLocation() {
+        System.out.println("getRecordsByLocation");
+        List<CourseSession> result = new ArrayList<CourseSession>();
+        mysqlCourseSessionDAOMocked.getRecordsByLocation(l);
+        verify(mysqlCourseSessionDAOMocked).getRecordsByLocation(l);
+        
+        assertEquals(result.getClass(), mysqlCourseSessionDAOMocked.getRecordsByLocation(l).getClass());
+    }
+    
+    /**
+     * Test of getRecordsByCourse method, of class MYSQLCourseSessionDAO.
+     */
+    @Test
+    public void testGetRecordsByCourse() {
+        System.out.println("getRecordsByCourse");
+        List<Course> result = new ArrayList<Course>();
+        mysqlCourseSessionDAOMocked.getRecordsByCourse(co);
+        verify(mysqlCourseSessionDAOMocked).getRecordsByCourse(co);
+        
+        assertEquals(result.getClass(), mysqlCourseSessionDAOMocked.getRecordsByCourse(co).getClass());
+    }
+    
+    /**
+     * Test of getRecordsByID method, of class MYSQLCourseSessionDAO.
+     */
+    @Test
+    public void testGetRecordsByID() {
+        System.out.println("getRecordsByID");
+
+        mysqlCourseSessionDAOMocked.getRecordsByID(c.getId());
+        verify(mysqlCourseSessionDAOMocked).getRecordsByID(c.getId());
+        
+        assertEquals(c, mysqlCourseSessionDAOMocked.getRecordsByID(c.getId()));
     }
     
 }
