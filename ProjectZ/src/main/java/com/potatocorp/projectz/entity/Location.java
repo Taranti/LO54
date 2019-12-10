@@ -16,11 +16,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "location")
+
 public class Location implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "ID", unique = true, nullable = false)
-    private int id;
+    private Integer id;
     
     @Column (name = "CITY", nullable = false)
     private String city;
@@ -28,16 +30,16 @@ public class Location implements Serializable {
     public Location() {
     }
 
-    public Location(int id, String city) {
+    public Location(Integer id, String city) {
         this.id = id;
         this.city = city;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

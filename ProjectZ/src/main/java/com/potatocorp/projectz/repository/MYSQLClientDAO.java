@@ -76,4 +76,16 @@ public class MYSQLClientDAO {
         transactobj.commit();
         System.out.println("Succesfully Deleted " + c.toString());
     }
+    public int getCountByID(Integer id){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        
+        Transaction transactobj = session.beginTransaction();
+        
+        int count =  ((Long) session.getNamedQuery("CountClientBySession").setParameter("sessionID", id).list().get(0)).intValue();
+        
+        transactobj.commit();
+        
+        return count;
+    }
 }

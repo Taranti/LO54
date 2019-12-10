@@ -16,11 +16,22 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "course_session")
+
+@org.hibernate.annotations.NamedQueries({
+    @org.hibernate.annotations.NamedQuery(name = "CourseSessionFindByLocation", 
+        query = "from CourseSession where LOCATION_ID = :locationId"),
+    @org.hibernate.annotations.NamedQuery(name = "CourseSessionFindByCourse", 
+        query = "from CourseSession where COURSE_CODE = :courseCode"),
+    @org.hibernate.annotations.NamedQuery(name = "CourseSessionFindByID", 
+        query = "from CourseSession where ID = :sessionID")
+})
+
 public class CourseSession implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "ID", unique = true, nullable = false)
-    private int id;
+    private Integer id;
     
     @Column (name = "START_DATE", nullable = false)
     private Date startDate;
@@ -42,7 +53,7 @@ public class CourseSession implements Serializable {
     public CourseSession() {
     }
 
-    public CourseSession(int id, Date startDate, Date endDate, int max, Course course, Location location) {
+    public CourseSession(Integer id, Date startDate, Date endDate, int max, Course course, Location location) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -51,11 +62,11 @@ public class CourseSession implements Serializable {
         this.location = location;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
