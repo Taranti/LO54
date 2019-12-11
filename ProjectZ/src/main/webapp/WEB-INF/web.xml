@@ -14,12 +14,7 @@
         <servlet-name>servlet</servlet-name>
         <url-pattern>/servlet/*</url-pattern>
     </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>servletUser</servlet-name>
-        <url-pattern>/createUser/*</url-pattern>
-    </servlet-mapping>
-    
+        
     <servlet-mapping>
         <servlet-name>servletCoursesSelection</servlet-name>
         <url-pattern>/filter/*</url-pattern>
