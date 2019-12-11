@@ -9,24 +9,13 @@ import com.potatocorp.projectz.entity.Client;
 import com.potatocorp.projectz.entity.CourseSession;
 import com.potatocorp.projectz.repository.MYSQLClientDAO;
 import com.potatocorp.projectz.repository.MYSQLCourseSessionDAO;
-import javax.servlet.annotation.WebServlet;
+import com.potatocorp.projectz.repository.MongoDBClientDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -54,7 +43,7 @@ public class ServletRegisterClientSession extends HttpServlet{
         //HttpSession session = request.getSession();
         MYSQLCourseSessionDAO csDAO=new MYSQLCourseSessionDAO();
         MYSQLClientDAO clientDAO=new MYSQLClientDAO();
-        
+        MongoDBClientDAO mdbClientDao=new MongoDBClientDAO();
         
         String sessionNumber=request.getParameter("session");
         Integer sessionID=Integer.parseInt(sessionNumber);
@@ -67,7 +56,10 @@ public class ServletRegisterClientSession extends HttpServlet{
         String phonenumber=request.getParameter("phonenumber");
         String mail=request.getParameter("mail");
         Client client=new Client(null,lastname,firstname,address,phonenumber,mail,cs);
+        
         clientDAO.saveRecord(client);
+        client.setId(1);
+        mdbClientDao.saveClient(client);
         response.sendRedirect("/");
     }
     

@@ -46,6 +46,7 @@ public class Client implements Serializable {
     
     @ManyToOne
     @JoinColumn (name = "COURSE_SESSION_ID", nullable = false)
+   
     private CourseSession session;
 
     public Client() {
