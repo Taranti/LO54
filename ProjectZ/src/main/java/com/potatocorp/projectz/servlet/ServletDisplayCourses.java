@@ -8,7 +8,6 @@ package com.potatocorp.projectz.servlet;
 import com.potatocorp.projectz.entity.CourseSession;
 import com.potatocorp.projectz.repository.MYSQLCourseSessionDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,18 +45,6 @@ public class ServletDisplayCourses extends HttpServlet{
         session.setAttribute("date", date);
         session.setAttribute("location", locationID);
         response.sendRedirect("/filtered");
-        try (PrintWriter out = response.getWriter()) {
-            if(keyword!=""){
-                out.println("Keyword : "+keyword);
-            }
-            if(date!=""){
-                out.println("Date : "+date);
-            }
-            if(locationID!=""){
-                out.println("locationID : "+locationID);
-            }
-            
-        }
     }
 
     public String getServletInfo() {

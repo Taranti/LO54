@@ -9,6 +9,7 @@ import com.potatocorp.projectz.entity.Client;
 import com.potatocorp.projectz.entity.CourseSession;
 import com.potatocorp.projectz.repository.MYSQLClientDAO;
 import com.potatocorp.projectz.repository.MYSQLCourseSessionDAO;
+import com.potatocorp.projectz.repository.MongoDBClientDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +43,7 @@ public class ServletRegisterClientSession extends HttpServlet{
         //HttpSession session = request.getSession();
         MYSQLCourseSessionDAO csDAO=new MYSQLCourseSessionDAO();
         MYSQLClientDAO clientDAO=new MYSQLClientDAO();
-        
+        MongoDBClientDAO mdbClientDao=new MongoDBClientDAO();
         
         String sessionNumber=request.getParameter("session");
         Integer sessionID=Integer.parseInt(sessionNumber);
@@ -55,7 +56,10 @@ public class ServletRegisterClientSession extends HttpServlet{
         String phonenumber=request.getParameter("phonenumber");
         String mail=request.getParameter("mail");
         Client client=new Client(null,lastname,firstname,address,phonenumber,mail,cs);
+        
         clientDAO.saveRecord(client);
+        client.setId(1);
+        mdbClientDao.saveClient(client);
         response.sendRedirect("/");
     }
     
